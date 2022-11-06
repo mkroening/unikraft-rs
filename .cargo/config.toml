@@ -1,0 +1,11 @@
+[target.x86_64-unknown-linux-gnu]
+rustflags = [
+    "-Crelocation-model=static",
+    # linker script
+    "-Clink-arg=-Wl,-T,unikraft_linker_script.ld",
+    # default linker script
+    "-Clink-arg=-Wl,-dT,unikraft_default_linker_script.ld",
+    # entry point
+    "-Clink-arg=-Wl,-e,_unikraft_rs_start",
+    "-Cpanic=abort",
+]

@@ -1,0 +1,11 @@
+specification: v0.5
+
+unikraft: staging
+
+targets:
+  - name: default
+    architecture: x86_64
+    platform: kvm
+  - name: linuxu
+    architecture: x86_64
+    platform: linuxu
