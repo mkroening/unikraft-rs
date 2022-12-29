@@ -1,0 +1,16 @@
+[package]
+name = "unikraft-abi"
+version.workspace = true
+authors.workspace = true
+edition.workspace = true
+description = "Idiomatic Rust bindings for Unikraft."
+repository.workspace = true
+categories = ["api-bindings", "memory-management", "os", "no-std"]
+
+[dev-dependencies]
+unikraft = { path = ".." }
+
+[features]
+default = []
+global_allocator = []
+panic_handler = []
