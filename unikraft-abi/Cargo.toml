@@ -7,6 +7,11 @@ description = "Idiomatic Rust bindings for Unikraft."
 repository.workspace = true
 categories = ["api-bindings", "memory-management", "os", "no-std"]
 
+[dependencies]
+# When built as part of libstd
+core = { version = "1.0.0", optional = true, package = "rustc-std-workspace-core" }
+compiler_builtins = { version = "0.1.0", optional = true }
+
 [dev-dependencies]
 unikraft = { path = ".." }
 
@@ -14,3 +19,7 @@ unikraft = { path = ".." }
 default = []
 global_allocator = []
 panic_handler = []
+rustc-dep-of-std = [
+    "core",
+    "compiler_builtins",
+]
