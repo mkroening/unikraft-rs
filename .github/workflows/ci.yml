@@ -1,0 +1,41 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  clippy:
+    name: Clippy
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: dtolnay/rust-toolchain@stable
+      - run: |
+          cargo clippy
+          cargo clippy --package unikraft-abi --features global_allocator,panic_handler
+        env:
+          RUSTFLAGS: -Dwarnings
+
+  doc:
+    name: Check documentation
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: dtolnay/rust-toolchain@stable
+      - run: |
+          cargo doc
+          cargo doc --package unikraft-abi --features global_allocator,panic_handler
+        env:
+          RUSTFLAGS:
+          RUSTDOCFLAGS: -Dwarnings
+
+  fmt:
+    name: Check format
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: dtolnay/rust-toolchain@nightly
+        with:
+          components: rustfmt
+      - run: cargo fmt -- --check
